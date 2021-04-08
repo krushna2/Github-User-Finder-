@@ -1,15 +1,17 @@
 import React, { useState,useContext } from 'react';
 import GithubContext from "../../context/github/githubContext";
+import AlertContext from "../../context/alert/alertContext";
 
 const Search= ({setAlert,searchUsers,showClear,clearUsers}) => {
     const githubContext = useContext(GithubContext);
+    const alertContext = useContext(AlertContext);
     const [text,setText] = useState("");
 
     const onSubmit = (e) =>{
         e.preventDefault();
         if(text === "")
         {
-            setAlert("Please enter somthing..","success");
+            alertContext.setAlert("Please enter somthing..","success");
         }
         githubContext.searchUsers(text);//Passing props to parent component i.e props up
         setText("");

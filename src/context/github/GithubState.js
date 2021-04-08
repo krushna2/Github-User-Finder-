@@ -2,7 +2,7 @@ import React, {useReducer} from "react";
 import axios from "axios";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
-import {SEARCH_USERS,GET_USER,CLEAR_USERS,GET_REPOS,SET_LOADING} from "../types";
+import {SEARCH_USERS,GET_USER,CLEAR_USERS,GET_REPOS,SET_LOADING,REMOVE_LOADING} from "../types";
 
 const GithubState = props => {
     const initialState = {
@@ -50,6 +50,9 @@ const GithubState = props => {
     //Set Loading
     const setLoading = () =>{dispatch({type:SET_LOADING})};
 
+    //remove loading 
+    const removeLoading = () => dispatch({type:REMOVE_LOADING});
+
     return <GithubContext.Provider
         value = {{
             users:state.users,
@@ -59,7 +62,8 @@ const GithubState = props => {
             searchUsers,
             clearUsers,
             getUser,
-            getUserRepos
+            getUserRepos,
+            removeLoading
         }}
     >
         {props.children}
